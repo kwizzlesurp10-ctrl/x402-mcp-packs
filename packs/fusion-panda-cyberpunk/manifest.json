@@ -6,6 +6,13 @@
   "price_usd": 0.49,
   "price_usdc": "0.49",
   "network": "eip155:8453",
+  "x402": {
+    "scheme": "exact",
+    "network": "eip155:8453",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "pay_to": "0x0d25A44f74868eCE53B305C97139CF4B62963410",
+    "pay_to_env": "X402_PAY_TO_ADDRESS"
+  },
   "license": "Commercial Merch & Digital Print License (Single Output)",
   "attribution": "Generated via MerchForge on x402-mcp",
   "parameters": {

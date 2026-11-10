@@ -225,7 +225,9 @@ def test_get_sample_poster():
 
 
 def test_build_payment_required_header(monkeypatch: pytest.MonkeyPatch):
-    monkeypatch.setattr(settings, "x402_pay_to_address", "0xTestPayTo00000000000000000000000001")
+    from packs.x402_payto import CANONICAL_PAY_TO
+
+    monkeypatch.setattr(settings, "x402_pay_to_address", CANONICAL_PAY_TO)
     header = build_payment_required_header(network="eip155:8453")
     assert isinstance(header, str)
     assert len(header) > 20
@@ -234,9 +236,15 @@ def test_build_payment_required_header(monkeypatch: pytest.MonkeyPatch):
 def test_build_poster_challenge(monkeypatch: pytest.MonkeyPatch):
     from app.fusion_panda import build_poster_challenge
 
-    monkeypatch.setattr(settings, "x402_pay_to_address", "0xTestPayTo00000000000000000000000001")
+    from packs.x402_payto import CANONICAL_PAY_TO
+
+    monkeypatch.setattr(settings, "x402_pay_to_address", CANONICAL_PAY_TO)
     challenge = build_poster_challenge(price_usd=0.49, network="eip155:8453")
     assert challenge["price"] == "$0.49"
     assert challenge["network"] == "eip155:8453"
     assert "payment_required_header" in challenge
+    requirements = challenge.get("requirements") or []
+    assert requirements, "challenge must include payment requirements"
+    pay_tos = {r.get("pay_to") or r.get("payTo") for r in requirements}
+    assert CANONICAL_PAY_TO in pay_tos
 
