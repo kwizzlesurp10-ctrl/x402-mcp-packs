@@ -10,7 +10,8 @@
 ## 📌 Quick Reference
 
 ### 🔐 Wallet Addresses (⚠️ NEVER commit secrets!)
-- **Seller Address:** `0xAB745e5F...` *(shared with x402-mcp seller wallet)*
+- **Seller Address (payTo):** `0x0d25A44f74868eCE53B305C97139CF4B62963410` *(Keith Base USDC — canonical; set `X402_PAY_TO_ADDRESS` on the host server)*
+- **Retired (never use):** `0xAB745e5F576667037696e78ba7dA28E193E4423D`
 - **Payment Rail:** Base mainnet (Coinbase CDP facilitator)
 - **Buyer Wallet:** Local-only testing at ~/secrets/
 
